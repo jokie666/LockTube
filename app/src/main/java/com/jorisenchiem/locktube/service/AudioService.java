@@ -43,7 +43,7 @@ public class AudioService extends Service implements
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         //return super.onStartCommand(intent, flags, startId);
-        Toast.makeText(this, "Service is gestart", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "Service is gestart", Toast.LENGTH_LONG).show();
         Uri muziek = Uri.parse("rtsp://v8.cache1.c.youtube.com/CiILENy73wIaGQnxa4t5p6BVTxMYESARFEgGUgZ2aWRlb3MM/0/0/0/video.3gp");
         try {
             mediaPlayer.setDataSource(getApplicationContext(), muziek);
