@@ -2,10 +2,12 @@ package com.jorisenchiem.locktube.service;
 
 import android.app.Service;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -44,9 +46,11 @@ public class AudioService extends Service implements
     public int onStartCommand(Intent intent, int flags, int startId) {
         //return super.onStartCommand(intent, flags, startId);
         //Toast.makeText(this, "Service is gestart", Toast.LENGTH_LONG).show();
-        Uri muziek = Uri.parse("rtsp://v8.cache1.c.youtube.com/CiILENy73wIaGQnxa4t5p6BVTxMYESARFEgGUgZ2aWRlb3MM/0/0/0/video.3gp");
+        Uri muziek = Uri.parse("http://joris.aoweb.nl/test.mp3");
         try {
+            mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
             mediaPlayer.setDataSource(getApplicationContext(), muziek);
+            mediaPlayer.prepareAsync();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -57,7 +61,9 @@ public class AudioService extends Service implements
     public void onDestroy() {
         super.onDestroy();
 
-        Toast.makeText(this, "Service is gestopt", Toast.LENGTH_LONG).show();
+        if(mediaPlayer.isPlaying()){
+            mediaPlayer.stop();
+        }
     }
 
     @Override
@@ -72,6 +78,7 @@ public class AudioService extends Service implements
 
     @Override
     public boolean onError(MediaPlayer mp, int what, int extra) {
+        Log.d("ErrorCode", what + " " + extra);
         return false;
     }
 
