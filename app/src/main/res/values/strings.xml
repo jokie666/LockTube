@@ -2,4 +2,6 @@
     <string name="app_name">LockTube</string>
     <string name="action_settings">Settings</string>
     <string name="action_search">Search</string>
+    <string name="tab_tracks">Search</string>
+    <string name="tab_playlists">Search</string>
 </resources>
