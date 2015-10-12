@@ -30,6 +30,14 @@ public class MainActivity extends AppCompatActivity {
                 startService(new Intent(instance, com.jorisenchiem.locktube.service.AudioService.class));
             }
         });
+
+        FloatingActionButton fab2 = (FloatingActionButton) findViewById(R.id.fab2);
+        fab2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                stopService(new Intent(instance, com.jorisenchiem.locktube.service.AudioService.class));
+            }
+        });
     }
 
     @Override
