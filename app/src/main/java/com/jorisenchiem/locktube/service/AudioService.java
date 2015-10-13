@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.io.IOException;
 
@@ -46,6 +45,9 @@ public class AudioService extends Service implements
     public int onStartCommand(Intent intent, int flags, int startId) {
         //return super.onStartCommand(intent, flags, startId);
         //Toast.makeText(this, "Service is gestart", Toast.LENGTH_LONG).show();
+        if(mediaPlayer.isPlaying()){
+            return START_STICKY;
+        }
         Uri muziek = Uri.parse("http://joris.aoweb.nl/test.mp3");
         try {
             mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
